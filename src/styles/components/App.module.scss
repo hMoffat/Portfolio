@@ -1,0 +1,6 @@
+@use "../base/colours";
+
+.AppContainer {
+  background-color: colours.$light-shade;
+  height: 100%;
+}
