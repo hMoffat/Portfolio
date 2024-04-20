@@ -1,0 +1,8 @@
+@use "../base/colours";
+@use "../base/typography";
+
+.AppContainer {
+  background-color: colours.$light-shade;
+  height: 100%;
+  font-family: typography.$main-font;
+}

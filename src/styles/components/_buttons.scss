@@ -1,0 +1,60 @@
+@use "../base/colours";
+button {
+  font: {
+    size: 1rem;
+  }
+  border-radius: 6px;
+  padding: 0.7rem 2.5rem;
+}
+
+@mixin button-style($bg-colour, $font-colour) {
+  background-color: $bg-colour;
+  color: $font-colour;
+  border: if($bg-colour != colours.$main-accent, solid 1px $font-colour, none);
+  font: {
+    weight: 600;
+  }
+  box-shadow: 0px 4px 4px
+    if(
+      $bg-colour == colours.$main-accent,
+      colours.$main-shadow,
+      colours.$alt-shadow
+    );
+  &:hover {
+    box-shadow: 4px 0px 4px
+        if(
+          $bg-colour == colours.$main-accent,
+          colours.$main-shadow,
+          colours.$alt-shadow
+        ),
+      0px 7px 4px
+        if(
+          $bg-colour == colours.$main-accent,
+          colours.$main-shadow,
+          colours.$alt-shadow
+        ),
+      -4px 0px 4px if($bg-colour == colours.$main-accent, colours.$main-shadow, colours.$alt-shadow);
+    transition: all, ease-in-out, 0.3s;
+    transform: translateY(-3px);
+    cursor: pointer;
+  }
+  &:active {
+    transition: all, ease-in-out, 0.3s;
+    transform: translateY(7px);
+    box-shadow: none;
+    cursor: pointer;
+  }
+  &:disabled {
+    box-shadow: none;
+    transform: translateY(3px);
+    cursor: wait;
+  }
+}
+
+.PrimaryButton {
+  @include button-style(colours.$main-accent, colours.$light-shade);
+}
+
+.SecondaryButton {
+  @include button-style(colours.$light-shade, colours.$alt-accent);
+}

@@ -1,10 +1,9 @@
 import { useState } from "react";
-import "./App.css";
+import "./styles/components/root.scss";
+import { AppContainer } from "./styles/components/App.module.scss";
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return <></>;
+  return <div className={AppContainer}></div>;
 }
 
 export default App;

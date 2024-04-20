@@ -1,0 +1,25 @@
+@use "base/colours.scss";
+@use "base/global.scss";
+@use "base/reset.scss";
+@use "base/typography.scss";
+
+body {
+  height: 100dvh;
+  font-family: typography.$main-font;
+}
+
+a {
+  text-decoration: none;
+  color: colours.$alt-accent;
+
+  &:hover {
+    text-decoration: underline;
+  }
+  &:active {
+    text-decoration: underline;
+    color: colours.$dark-accent;
+  }
+  &:visited {
+    color: colours.$dark-accent;
+  }
+}
