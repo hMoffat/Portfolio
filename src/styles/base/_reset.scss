@@ -54,6 +54,7 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
+  overflow-wrap: break-word;
 }
 /* HTML5 display-role reset for older browsers */
 article,
@@ -70,9 +71,19 @@ section {
   display: block;
 }
 body {
-  line-height: 1;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
 }
 ol,
 ul {
   list-style: none;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
 }
