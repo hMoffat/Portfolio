@@ -6,10 +6,12 @@ import { useScrollSpy } from "@raddix/use-scroll-spy";
 export default function NavBar() {
   //if actual menu items list html far away from button html add aria-controls="main-menu" to button (i.e. matching id of the list)
 
+  const [menuOpen, setMenuOpen] = useState(false);
   const { hash, pathname } = useLocation();
   const [currentHash, setCurrentHash] = useState(
     pathname === "/" ? "Home" : "/Contact"
   );
+  const [hashUpdate, setHashUpdate] = useState("");
   const headingIds = ["Home", "Projects", "About"];
 
   const activeId = useScrollSpy(headingIds, {
@@ -29,11 +31,25 @@ export default function NavBar() {
   }, [hash]);
 
   useEffect(() => {
-    if (pathname !== "/contact") setCurrentHash(activeId);
+    if (pathname !== "/contact") {
+      // !! without the folllow condition to replace with '#scroll' then it wont work if you've clicked and scrolled away
+      if (activeId !== hash) {
+        window.location.replace("#scroll");
+      }
+      setCurrentHash(activeId);
+    }
   }, [activeId]);
+
   return (
     <nav aria-label="Main menu" className="NavBar">
-      <ul aria-controls="main-menu" className="NavListContainer">
+      <ul
+        aria-controls="main-menu"
+        className={
+          menuOpen
+            ? "NavBar__NavListContainer__open"
+            : "NavBar__NavListContainer"
+        }
+      >
         <NavLink
           to={"/#Home"}
           className={
@@ -67,13 +83,30 @@ export default function NavBar() {
           Contact
         </NavLink>
       </ul>
-      <div className="MobToggleContainer">
-        <button aria-label="Open the menu" aria-expanded="true">
-          &#9776;
-        </button>
-        <button aria-label="Close the menu" aria-expanded="false">
-          &#215;
-        </button>
+      <div
+        className={
+          menuOpen
+            ? "NavBar__MobToggleContainer__open"
+            : "NavBar__MobToggleContainer"
+        }
+      >
+        {menuOpen ? (
+          <button
+            aria-label="Close the menu"
+            aria-expanded="false"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            &#215;
+          </button>
+        ) : (
+          <button
+            aria-label="Open the menu"
+            aria-expanded="true"
+            onClick={() => setMenuOpen(!menuOpen)}
+          >
+            &#9776;
+          </button>
+        )}
       </div>
     </nav>
   );
