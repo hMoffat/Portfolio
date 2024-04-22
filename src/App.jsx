@@ -1,24 +1,19 @@
 import { useState } from "react";
 import "./styles/components/root.scss";
 import { AppContainer } from "./styles/components/App.module.scss";
-import Header from "./components/Header/Header";
 import NavBar from "./components/NavBar/NavBar";
-import ContactOptions from "./components/ContactOptions/ContactOptions";
-import Projects from "./components/Projects/Projects";
-import About from "./components/About/About";
-import Footer from "./components/Footer/Footer";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./components/HomePage/HomePage";
+import ContactPage from "./components/ContactPage/ContactPage";
 
 function App() {
   return (
     <div className={AppContainer}>
-      <Header />
       <NavBar />
-      <main>
-        <ContactOptions />
-        <Projects />
-        <About />
-      </main>
-      <Footer />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
     </div>
   );
 }

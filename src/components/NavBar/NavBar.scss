@@ -1,0 +1,10 @@
+.NavBar {
+  position: fixed;
+}
+
+.NavBar__Link {
+  background-color: blue;
+  &__active {
+    background-color: black;
+  }
+}
