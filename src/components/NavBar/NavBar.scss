@@ -5,7 +5,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: colours.$light-shade;
+  background-color: colours.$lighter-shade;
 }
 
 @mixin toggle() {
@@ -21,7 +21,7 @@
   transition: margin-top, ease, 2s;
   &__open {
     @include toggle();
-    margin-top: 170px;
+    margin-top: 200px;
     transition: margin-top, ease, 2s;
   }
 }
@@ -31,19 +31,20 @@
   padding: 0;
   padding-top: 50px;
   border-bottom: colours.$light-accent solid 2px;
-  height: 170px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
   width: 100%;
   position: fixed;
-  transition: all, ease, 2s;
+  transition: top, ease, 2s;
+  font-size: 1.1rem;
 }
 
 .NavBar__NavListContainer {
   @include listContainer();
-  top: -170px;
+  top: -200px;
   &__open {
     @include listContainer();
     top: 0;
@@ -76,14 +77,35 @@
 }
 
 @media screen and (min-width: 480px) {
-  .NavBar__NavListContainer {
-    flex-direction: row;
+  .NavBar {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 3px 4px colours.$light-shadow;
   }
 
+  .NavBar__NavListContainer__desktop {
+    max-width: 1280px;
+    width: 80dvw;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: space-evenly;
+    transition: none;
+    font-size: 1.2rem;
+  }
+
+  @mixin link() {
+    // margin: 0 2.5em;
+  }
   .NavBar__Link {
+    @include link();
     &:hover {
       color: colours.$main-accent;
       text-decoration: none;
+    }
+
+    &__active {
+      @include link();
     }
   }
 }

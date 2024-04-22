@@ -2,11 +2,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./NavBar.scss";
 import { useEffect, useState } from "react";
 import { useScrollSpy } from "@raddix/use-scroll-spy";
+import useWindowWidth from "../../customHooks/useWindowWidth";
 
 export default function NavBar({ menuOpen, setMenuOpen }) {
   //if actual menu items list html far away from button html add aria-controls="main-menu" to button (i.e. matching id of the list)
 
-  // const [menuOpen, setMenuOpen] = useState(false);
+  const windowWidth = useWindowWidth(window.innerWidth);
   const { hash, pathname } = useLocation();
   const [currentHash, setCurrentHash] = useState(
     pathname === "/" ? "Home" : "/Contact"
@@ -44,7 +45,9 @@ export default function NavBar({ menuOpen, setMenuOpen }) {
       <ul
         aria-controls="main-menu"
         className={
-          menuOpen
+          windowWidth >= 480
+            ? "NavBar__NavListContainer__desktop"
+            : menuOpen
             ? "NavBar__NavListContainer__open"
             : "NavBar__NavListContainer"
         }
@@ -82,33 +85,35 @@ export default function NavBar({ menuOpen, setMenuOpen }) {
           Contact
         </NavLink>
       </ul>
-      <div
-        className={
-          menuOpen
-            ? "NavBar__MobToggleContainer__open"
-            : "NavBar__MobToggleContainer"
-        }
-      >
-        {menuOpen ? (
-          <button
-            aria-label="Close the menu"
-            aria-expanded="false"
-            className="MobToggleContainer__button"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            &#215;
-          </button>
-        ) : (
-          <button
-            aria-label="Open the menu"
-            aria-expanded="true"
-            className="MobToggleContainer__button"
-            onClick={() => setMenuOpen(!menuOpen)}
-          >
-            &#9776;
-          </button>
-        )}
-      </div>
+      {windowWidth < 480 ? (
+        <div
+          className={
+            menuOpen
+              ? "NavBar__MobToggleContainer__open"
+              : "NavBar__MobToggleContainer"
+          }
+        >
+          {menuOpen ? (
+            <button
+              aria-label="Close the menu"
+              aria-expanded="false"
+              className="MobToggleContainer__button"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              &#215;
+            </button>
+          ) : (
+            <button
+              aria-label="Open the menu"
+              aria-expanded="true"
+              className="MobToggleContainer__button"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              &#9776;
+            </button>
+          )}
+        </div>
+      ) : null}
     </nav>
   );
 }
