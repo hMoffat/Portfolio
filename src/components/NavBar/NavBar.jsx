@@ -3,15 +3,14 @@ import "./NavBar.scss";
 import { useEffect, useState } from "react";
 import { useScrollSpy } from "@raddix/use-scroll-spy";
 
-export default function NavBar() {
+export default function NavBar({ menuOpen, setMenuOpen }) {
   //if actual menu items list html far away from button html add aria-controls="main-menu" to button (i.e. matching id of the list)
 
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
   const { hash, pathname } = useLocation();
   const [currentHash, setCurrentHash] = useState(
     pathname === "/" ? "Home" : "/Contact"
   );
-  const [hashUpdate, setHashUpdate] = useState("");
   const headingIds = ["Home", "Projects", "About"];
 
   const activeId = useScrollSpy(headingIds, {
@@ -94,6 +93,7 @@ export default function NavBar() {
           <button
             aria-label="Close the menu"
             aria-expanded="false"
+            className="MobToggleContainer__button"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             &#215;
@@ -102,6 +102,7 @@ export default function NavBar() {
           <button
             aria-label="Open the menu"
             aria-expanded="true"
+            className="MobToggleContainer__button"
             onClick={() => setMenuOpen(!menuOpen)}
           >
             &#9776;

@@ -7,11 +7,13 @@ import HomePage from "./components/HomePage/HomePage";
 import ContactPage from "./components/ContactPage/ContactPage";
 
 function App() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
     <div className={AppContainer}>
-      <NavBar />
+      <NavBar menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
       <Routes>
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage menuOpen={menuOpen} />} />
         <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </div>

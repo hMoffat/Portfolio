@@ -1,5 +1,17 @@
 @use "../../styles/base/colours";
-.homePage {
+
+@mixin home() {
   border: 5px pink solid;
   background-color: colours.$light-shade;
+}
+
+.homePage {
+  @include home();
+  padding-top: 45px;
+  transition: padding-top, ease, 2s;
+  &__menuOpen {
+    @include home();
+    padding-top: 215px;
+    transition: padding-top, ease, 2s;
+  }
 }

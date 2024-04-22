@@ -1,4 +1,6 @@
 @use "../../styles/base/colours";
+@use "../../styles/components/buttons";
+
 .NavBar {
   position: fixed;
   top: 0;
@@ -7,15 +9,14 @@
 }
 
 @mixin toggle() {
-  border-top: colours.$alt-accent solid 1px;
-  border-bottom: colours.$alt-accent solid 1px;
+  border-bottom: colours.$light-accent solid 2px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 40px;
 }
 .NavBar__MobToggleContainer {
   @include toggle();
-
   margin-top: 0px;
   transition: margin-top, ease, 2s;
   &__open {
@@ -29,6 +30,7 @@
   margin: 0;
   padding: 0;
   padding-top: 50px;
+  border-bottom: colours.$light-accent solid 2px;
   height: 170px;
   display: flex;
   flex-direction: column;
@@ -74,6 +76,10 @@
 }
 
 @media screen and (min-width: 480px) {
+  .NavBar__NavListContainer {
+    flex-direction: row;
+  }
+
   .NavBar__Link {
     &:hover {
       color: colours.$main-accent;

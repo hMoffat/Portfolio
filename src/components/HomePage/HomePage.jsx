@@ -3,11 +3,11 @@ import ContactOptions from "../ContactOptions/ContactOptions";
 import Projects from "../Projects/Projects";
 import About from "../About/About";
 import Footer from "../Footer/Footer";
-import { homePage } from "./HomePage.module.scss";
+import { homePage, homePage__menuOpen } from "./HomePage.module.scss";
 
-export default function HomePage() {
+export default function HomePage({ menuOpen }) {
   return (
-    <div className={homePage}>
+    <div className={menuOpen ? homePage__menuOpen : homePage}>
       <Header />
       <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
