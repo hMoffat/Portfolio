@@ -1,10 +1,33 @@
+@use "../../styles/base/colours";
 .NavBar {
   position: fixed;
+  top: 0;
 }
 
 .NavBar__Link {
-  background-color: blue;
+  background-color: colours.$light-shade;
+  color: colours.$dark-shade;
   &__active {
-    background-color: black;
+    background-color: colours.$light-shade;
+    text-decoration: underline;
+    color: colours.$main-accent;
+    &:visited {
+      background-color: colours.$light-shade;
+      text-decoration: underline;
+      color: colours.$main-accent;
+    }
+  }
+
+  &:active {
+    color: colours.$main-accent;
+    text-decoration: underline;
+  }
+  &:visited {
+    background-color: colours.$light-shade;
+    color: colours.$dark-shade;
+  }
+  &:hover {
+    color: colours.$main-accent;
+    text-decoration: none;
   }
 }

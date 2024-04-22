@@ -17,7 +17,6 @@ export default function NavBar() {
   });
 
   useEffect(() => {
-    console.log(pathname);
     const slicedHash = hash.slice(1);
     if (slicedHash) {
       const element = document.getElementById(slicedHash);
@@ -30,7 +29,6 @@ export default function NavBar() {
   }, [hash]);
 
   useEffect(() => {
-    console.log("activeID: ", activeId);
     if (pathname !== "/contact") setCurrentHash(activeId);
   }, [activeId]);
   return (

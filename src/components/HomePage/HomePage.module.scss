@@ -1,3 +1,5 @@
+@use "../../styles/base/colours";
 .homePage {
   border: 5px pink solid;
+  background-color: colours.$light-shade;
 }
