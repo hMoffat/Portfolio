@@ -33,52 +33,48 @@ export default function NavBar() {
   }, [activeId]);
   return (
     <nav aria-label="Main menu" className="NavBar">
-      <ul aria-controls="main-menu">
-        <li>
-          <NavLink
-            to={"/#Home"}
-            className={
-              currentHash === "Home" ? "NavBar__Link__active" : "NavBar__Link"
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to={"/#Projects"}
-            className={
-              currentHash === "Projects"
-                ? "NavBar__Link__active"
-                : "NavBar__Link"
-            }
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            to="/#About"
-            className={
-              currentHash === "About" ? "NavBar__Link__active" : "NavBar__Link"
-            }
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={
-              currentHash === "/contact"
-                ? "NavBar__Link__active"
-                : "NavBar__Link"
-            }
-          >
-            Contact
-          </NavLink>
-        </li>
+      <ul aria-controls="main-menu" className="NavListContainer">
+        <NavLink
+          to={"/#Home"}
+          className={
+            currentHash === "Home" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to={"/#Projects"}
+          className={
+            currentHash === "Projects" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          Projects
+        </NavLink>
+        <NavLink
+          to="/#About"
+          className={
+            currentHash === "About" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={
+            currentHash === "/contact" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          Contact
+        </NavLink>
       </ul>
-      <button aria-label="Open the menu" aria-expanded="true">
-        &#9776;
-      </button>
-      <button aria-label="Close the menu" aria-expanded="false">
-        &#215;
-      </button>
+      <div className="MobToggleContainer">
+        <button aria-label="Open the menu" aria-expanded="true">
+          &#9776;
+        </button>
+        <button aria-label="Close the menu" aria-expanded="false">
+          &#215;
+        </button>
+      </div>
     </nav>
   );
 }
