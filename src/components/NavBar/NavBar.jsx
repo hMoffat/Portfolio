@@ -2,10 +2,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./NavBar.scss";
 import { useEffect, useState } from "react";
 import { useScrollSpy } from "@raddix/use-scroll-spy";
+import useWindowWidth from "../../customHooks/useWindowWidth";
 
-export default function NavBar() {
+export default function NavBar({ menuOpen, setMenuOpen }) {
   //if actual menu items list html far away from button html add aria-controls="main-menu" to button (i.e. matching id of the list)
 
+  const windowWidth = useWindowWidth(window.innerWidth);
   const { hash, pathname } = useLocation();
   const [currentHash, setCurrentHash] = useState(
     pathname === "/" ? "Home" : "/Contact"
@@ -17,7 +19,6 @@ export default function NavBar() {
   });
 
   useEffect(() => {
-    console.log(pathname);
     const slicedHash = hash.slice(1);
     if (slicedHash) {
       const element = document.getElementById(slicedHash);
@@ -30,57 +31,89 @@ export default function NavBar() {
   }, [hash]);
 
   useEffect(() => {
-    console.log("activeID: ", activeId);
-    if (pathname !== "/contact") setCurrentHash(activeId);
+    if (pathname !== "/contact") {
+      // !! without the folllow condition to replace with '#scroll' then it wont work if you've clicked and scrolled away
+      if (activeId !== hash) {
+        window.location.replace("#scroll");
+      }
+      setCurrentHash(activeId);
+    }
   }, [activeId]);
+
   return (
     <nav aria-label="Main menu" className="NavBar">
-      <ul aria-controls="main-menu">
-        <li>
-          <NavLink
-            to={"/#Home"}
-            className={
-              currentHash === "Home" ? "NavBar__Link__active" : "NavBar__Link"
-            }
-          >
-            Home
-          </NavLink>
-          <NavLink
-            to={"/#Projects"}
-            className={
-              currentHash === "Projects"
-                ? "NavBar__Link__active"
-                : "NavBar__Link"
-            }
-          >
-            Projects
-          </NavLink>
-          <NavLink
-            to="/#About"
-            className={
-              currentHash === "About" ? "NavBar__Link__active" : "NavBar__Link"
-            }
-          >
-            About
-          </NavLink>
-          <NavLink
-            to="/contact"
-            className={
-              currentHash === "/contact"
-                ? "NavBar__Link__active"
-                : "NavBar__Link"
-            }
-          >
-            Contact
-          </NavLink>
-        </li>
+      <ul
+        aria-controls="main-menu"
+        className={
+          windowWidth >= 480
+            ? "NavBar__NavListContainer__desktop"
+            : menuOpen
+            ? "NavBar__NavListContainer__open"
+            : "NavBar__NavListContainer"
+        }
+      >
+        <NavLink
+          to={"/#Home"}
+          className={
+            currentHash === "Home" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          Home
+        </NavLink>
+        <NavLink
+          to={"/#Projects"}
+          className={
+            currentHash === "Projects" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          Projects
+        </NavLink>
+        <NavLink
+          to="/#About"
+          className={
+            currentHash === "About" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          About
+        </NavLink>
+        <NavLink
+          to="/contact"
+          className={
+            currentHash === "/contact" ? "NavBar__Link__active" : "NavBar__Link"
+          }
+        >
+          Contact
+        </NavLink>
       </ul>
-      <button aria-label="Open the menu" aria-expanded="true">
-        &#9776;
-      </button>
-      <button aria-label="Close the menu" aria-expanded="false">
-        &#215;
-      </button>
+      {windowWidth < 480 ? (
+        <div
+          className={
+            menuOpen
+              ? "NavBar__MobToggleContainer__open"
+              : "NavBar__MobToggleContainer"
+          }
+        >
+          {menuOpen ? (
+            <button
+              aria-label="Close the menu"
+              aria-expanded="false"
+              className="MobToggleContainer__button"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              &#215;
+            </button>
+          ) : (
+            <button
+              aria-label="Open the menu"
+              aria-expanded="true"
+              className="MobToggleContainer__button"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              &#9776;
+            </button>
+          )}
+        </div>
+      ) : null}
     </nav>
   );
 }

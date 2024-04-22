@@ -1,10 +1,111 @@
+@use "../../styles/base/colours";
+@use "../../styles/components/buttons";
+
 .NavBar {
   position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: colours.$lighter-shade;
+}
+
+@mixin toggle() {
+  border-bottom: colours.$light-accent solid 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+}
+.NavBar__MobToggleContainer {
+  @include toggle();
+  margin-top: 0px;
+  transition: margin-top, ease, 2s;
+  &__open {
+    @include toggle();
+    margin-top: 200px;
+    transition: margin-top, ease, 2s;
+  }
+}
+
+@mixin listContainer() {
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+  border-bottom: colours.$light-accent solid 2px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+  transition: top, ease, 2s;
+  font-size: 1.1rem;
+}
+
+.NavBar__NavListContainer {
+  @include listContainer();
+  top: -200px;
+  &__open {
+    @include listContainer();
+    top: 0;
+    // width: 100%;
+  }
 }
 
 .NavBar__Link {
-  background-color: blue;
+  color: colours.$dark-shade;
   &__active {
-    background-color: black;
+    text-decoration: underline;
+    color: colours.$main-accent;
+    &:visited {
+      text-decoration: underline;
+      color: colours.$main-accent;
+    }
+  }
+
+  &:active {
+    color: colours.$main-accent;
+    text-decoration: underline;
+  }
+  &:visited {
+    color: colours.$dark-shade;
+  }
+  &:hover {
+    color: colours.$dark-shade;
+    text-decoration: none;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .NavBar {
+    display: flex;
+    justify-content: center;
+    box-shadow: 0px 3px 4px colours.$light-shadow;
+  }
+
+  .NavBar__NavListContainer__desktop {
+    max-width: 1280px;
+    width: 80dvw;
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+    justify-content: space-evenly;
+    transition: none;
+    font-size: 1.2rem;
+  }
+
+  @mixin link() {
+    // margin: 0 2.5em;
+  }
+  .NavBar__Link {
+    @include link();
+    &:hover {
+      color: colours.$main-accent;
+      text-decoration: none;
+    }
+
+    &__active {
+      @include link();
+    }
   }
 }

@@ -1,3 +1,23 @@
-.homePage {
+@use "../../styles/base/colours";
+
+@mixin home() {
   border: 5px pink solid;
+  background-color: colours.$light-shade;
+}
+
+.homePage {
+  @include home();
+  padding-top: 45px;
+  transition: padding-top, ease, 2s;
+  &__menuOpen {
+    @include home();
+    padding-top: 245px;
+    transition: padding-top, ease, 2s;
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .homePage {
+    padding-top: 4rem;
+  }
 }
