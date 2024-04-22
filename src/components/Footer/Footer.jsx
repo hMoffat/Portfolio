@@ -1,8 +1,11 @@
+import { useNavigate } from "react-router-dom";
+
 export default function Footer() {
+  const navigate = useNavigate();
   return (
     <footer>
       <a>links</a>
-      <button>contact</button>
+      <button onClick={() => navigate("/contact")}>contact</button>
       <a>icons8</a>
     </footer>
   );
