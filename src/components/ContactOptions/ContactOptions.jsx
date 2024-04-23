@@ -11,24 +11,29 @@ import {
 import * as logos from "../../assets/Logos";
 import { useRef, useState, useEffect } from "react";
 import arrow from "../../assets/svg/arrow.svg";
+import useWindowWidth from "../../customHooks/useWindowWidth";
 
 export default function ContactOptions({ offsetSize }) {
   const navigate = useNavigate();
   const refForTop = useRef(0);
   const [sectionHeight, setSectionHeight] = useState(0);
+  const windowWidth = useWindowWidth(window.innerWidth);
+  const [sidePadding, setSidePadding] = useState(0);
 
   useEffect(() => {
-    setSectionHeight(window.innerHeight - refForTop.current.offsetTop);
     console.log(offsetSize);
-  }, []);
+    setSectionHeight(window.innerHeight - refForTop.current.offsetTop);
+    setSidePadding(windowWidth > 480 ? 0 : offsetSize);
+  }, [offsetSize]);
+  //`${windowWidth > 480 ? 0 : offsetSize}`
   return (
     <section
       className={ContactOptionsContainer}
       ref={refForTop}
       style={{
         height: sectionHeight,
-        paddingLeft: offsetSize - 16,
-        paddingRight: offsetSize - 16,
+        paddingLeft: sidePadding,
+        paddingRight: sidePadding,
       }}
     >
       <a

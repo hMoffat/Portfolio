@@ -23,7 +23,7 @@
     padding-bottom: 5em;
   }
   &__Arrow {
-    height: 60%;
+    height: 40%;
     margin-bottom: 1em;
   }
 }
@@ -34,4 +34,24 @@
   position: absolute;
   overflow: hidden;
   bottom: 10px;
+}
+
+@media screen and (min-width: 480px) {
+  .ContactOptionsContainer {
+    padding: 0;
+    max-width: 1200px;
+    width: 80dvw;
+    align-items: center;
+    &__Arrow {
+      height: 40%;
+    }
+    &__Logo {
+      height: 1.5em;
+      margin-bottom: 1em;
+    }
+    p {
+      height: 2rem;
+      margin-bottom: 1.5em;
+    }
+  }
 }
