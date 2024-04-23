@@ -1,7 +1,10 @@
 @use "../../styles/base/colours";
 
 @mixin home() {
-  border: 5px pink solid;
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+  padding-left: 1rem;
   background-color: colours.$light-shade;
 }
 
