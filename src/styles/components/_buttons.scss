@@ -3,14 +3,18 @@ button {
   font: {
     size: 1rem;
   }
-  border-radius: 6px;
-  padding: 0.7rem 2.5rem;
+  border-radius: 7px;
+  padding: 0.6rem 2.3rem;
 }
 
 @mixin button-style($bg-colour, $font-colour) {
   background-color: $bg-colour;
   color: $font-colour;
-  border: if($bg-colour != colours.$main-accent, solid 1px $font-colour, none);
+  border: if(
+    $bg-colour != colours.$main-accent,
+    solid 1px $font-colour,
+    solid 1px $bg-colour
+  );
   font: {
     weight: 600;
   }

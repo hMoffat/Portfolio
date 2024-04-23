@@ -11,11 +11,11 @@
 .homePage {
   @include home();
   padding-top: 45px;
-  transition: padding-top, ease, 2s;
+  transition: padding-top, ease, 1.5s;
   &__menuOpen {
     @include home();
     padding-top: 245px;
-    transition: padding-top, ease, 2s;
+    transition: padding-top, ease, 1.5s;
   }
 }
 
