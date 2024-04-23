@@ -15,7 +15,7 @@
     }
   }
   h2 {
-    z-index: 99;
+    z-index: 90;
     position: relative;
     font: {
       size: 1.3rem;
@@ -33,4 +33,20 @@
   position: relative;
   top: -13px;
   z-index: 1;
+}
+
+@media screen and (min-width: 480px) {
+  .HeaderContainer {
+    h1 {
+      font-size: 4rem;
+      margin-bottom: 0.2em;
+    }
+    h2 {
+      font-size: 2rem;
+    }
+  }
+  .subtitleUnderline {
+    width: 470px;
+    top: -17px;
+  }
 }

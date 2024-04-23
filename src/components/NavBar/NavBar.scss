@@ -6,6 +6,7 @@
   top: 0;
   width: 100%;
   background-color: colours.$lighter-shade;
+  z-index: 99;
 }
 
 @mixin toggle() {
@@ -18,11 +19,11 @@
 .NavBar__MobToggleContainer {
   @include toggle();
   margin-top: 0px;
-  transition: margin-top, ease, 2s;
+  transition: margin-top, ease, 1.5s;
   &__open {
     @include toggle();
     margin-top: 200px;
-    transition: margin-top, ease, 2s;
+    transition: margin-top, ease, 1.5s;
   }
 }
 
@@ -38,7 +39,7 @@
   align-items: center;
   width: 100%;
   position: fixed;
-  transition: top, ease, 2s;
+  transition: top, ease, 1.5s;
   font-size: 1.1rem;
 }
 
