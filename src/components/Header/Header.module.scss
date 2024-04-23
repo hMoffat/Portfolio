@@ -1,0 +1,36 @@
+@use "../../styles/base/typography";
+@use "../../styles/base/colours";
+
+.HeaderContainer {
+  padding: 5em 0;
+  text-align: center;
+  color: colours.$main-accent;
+  text-shadow: 0 4px 4px colours.$main-shadow;
+
+  h1 {
+    font: {
+      size: 2rem;
+      family: typography.$title-font;
+      weight: 500;
+    }
+  }
+  h2 {
+    z-index: 99;
+    position: relative;
+    font: {
+      size: 1.3rem;
+      family: typography.$sub-title-font;
+    }
+  }
+}
+
+.subtitleUnderline {
+  width: 320px;
+  height: 10px;
+  background-color: colours.$subtitle-underline;
+  border-radius: 5px;
+  margin: auto;
+  position: relative;
+  top: -13px;
+  z-index: 1;
+}
